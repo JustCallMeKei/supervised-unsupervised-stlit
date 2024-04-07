@@ -114,6 +114,7 @@ def app():
         ax.set_title('Mallic Acid vs Alcohol')
         ax.legend()
         ax.grid(True)
+        st.pyplot(fig)
 
 
 #run the app
