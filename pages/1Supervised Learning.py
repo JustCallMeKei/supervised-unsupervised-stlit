@@ -62,7 +62,7 @@ def app():
     \n**Advantages of KNN:**
     * Simple to understand and implement.
     * No complex model training required.
-    * Effective for datasets with well-defined clusters.
+    * Effective for datasets with well-defined clusters."""
     st.write(text)
     k = st.sidebar.slider(
         label="Select the value of k:",
