@@ -86,11 +86,11 @@ def app():
         
         # Predict the cluster labels for the data
         y_pred = knn.predict(X)
-        #st.write('Confusion Matrix')
+        st.write('Confusion Matrix')
         cm = confusion_matrix(y, y_pred)
-        #st.text(cm)
-        #st.subheader('Performance Metrics')
-        #st.text(classification_report(y, y_pred))
+        st.text(cm)
+        st.subheader('Performance Metrics')
+        st.text(classification_report(y, y_pred))
         
         # Get unique class labels and color map
         unique_labels = list(set(y_pred))
@@ -113,13 +113,12 @@ def app():
         ax.grid(True)
         
 
-# Display the plot
-
 
         # Add legend and grid using ax methods
         ax.legend()
         ax.grid(True)
         st.pyplot(fig)
+        #added confusion matrix plot since
         plt.figure(figsize=(8, 6))
         sns.heatmap(cm, annot=True, cmap='Blues', fmt='d', 
                     xticklabels=wine.target_names, 
@@ -127,7 +126,6 @@ def app():
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.title('Confusion Matrix')
-        
         st.pyplot(plt)
 #run the app
 if __name__ == "__main__":
