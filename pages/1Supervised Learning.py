@@ -121,14 +121,14 @@ def app():
         ax.grid(True)
         st.pyplot(fig)
         plt.figure(figsize=(8, 6))
-        sns.heatmap(cm, annot=True, cmap='Blues', fmt='d', 
+        cmfig=sns.heatmap(cm, annot=True, cmap='Blues', fmt='d', 
                     xticklabels=wine.target_names, 
                     yticklabels=wine.target_names)
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.title('Confusion Matrix')
         
-        st.pyplot()
+        st.pyplot(cmfig)
 #run the app
 if __name__ == "__main__":
     app()
