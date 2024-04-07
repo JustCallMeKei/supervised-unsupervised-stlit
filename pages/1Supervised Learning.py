@@ -15,7 +15,7 @@ import time
 def app():
 
     st.subheader('Supervised Learning, Classification, and KNN with Wine Dataset')
-    ''''text = """**Supervised Learning:**
+    text = """**Supervised Learning:**
     \nSupervised learning is a branch of machine learning where algorithms learn from labeled data. 
     This data consists of input features (X) and corresponding outputs or labels (y). The algorithm learns a 
     mapping function from the input features to the outputs, allowing it to predict the labels for 
