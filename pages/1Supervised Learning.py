@@ -120,7 +120,7 @@ def app():
         ax.legend()
         ax.grid(True)
         st.pyplot(fig)
-         plt.figure(figsize=(8, 6))
+        plt.figure(figsize=(8, 6))
         sns.heatmap(cm, annot=True, cmap='Blues', fmt='d', 
                     xticklabels=wine.target_names, 
                     yticklabels=wine.target_names)
