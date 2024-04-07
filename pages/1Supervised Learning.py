@@ -72,7 +72,7 @@ def app():
     )
 
     if st.button("Begin"):
-        wine = datasets.load_wine()
+        wine = datasets.load_wine() #since the dataset is already found in the dataset import I just used this instead of downloading a csv file
         X = wine.data 
         y = wine.target  
         
