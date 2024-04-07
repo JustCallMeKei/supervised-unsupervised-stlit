@@ -14,8 +14,8 @@ import time
 # Define the Streamlit app
 def app():
 
-    st.subheader('Supervised Learning, Classification, and KNN with Iris Dataset')
-    text = """**Supervised Learning:**
+    st.subheader('Supervised Learning, Classification, and KNN with Wine Dataset')
+    ''''text = """**Supervised Learning:**
     \nSupervised learning is a branch of machine learning where algorithms learn from labeled data. 
     This data consists of input features (X) and corresponding outputs or labels (y). The algorithm learns a 
     mapping function from the input features to the outputs, allowing it to predict the labels for 
@@ -26,25 +26,34 @@ def app():
     point based on its features.
     \n**K-Nearest Neighbors (KNN):**
     KNN is a simple yet powerful algorithm for both classification and regression tasks. 
-    \n**The Iris Dataset:**
-    The Iris dataset is a popular benchmark dataset in machine learning. It contains information about 150 
-    iris flowers from three different species: Iris Setosa, Iris Versicolor, and Iris Virginica. 
-    Each flower is described by four features:
-    * Sepal length (cm)
-    * Sepal width (cm)
-    * Petal length (cm)
-    * Petal width (cm)
-    \n**KNN Classification with Iris:**
+    \n**The Wine Dataset:**
+    The data is the results of a chemical analysis of wines grown in the same region in Italy by three different cultivators. 
+    There are thirteen different measurements taken for different constituents found in the three types of wine.
+    https://scikit-learn.org/stable/datasets/toy_dataset.html#wine-dataset
+    1.Alcohol
+    2.Malic acid
+    3.Ash
+    4.Alcalinity of ash
+    5.Magnesium
+    6.Total phenols
+    7.Flavanoids
+    8.Nonflavanoid phenols
+    0.Proanthocyanins
+    10.Color intensity
+    11.Hue
+    12.OD280/OD315 of diluted wines
+    13.Proline
+    \n**KNN Classification with Wine:**
     \n1. **Training:**
-    * The KNN algorithm stores the entire Iris dataset (features and labels) as its training data.
+    * The KNN algorithm stores the entire Wine dataset (features and labels) as its training data.
     \n2. **Prediction:**
-    * When presented with a new iris flower (unknown species), KNN calculates the distance (often Euclidean distance) 
-    between this flower's features and all the flowers in the training data.
+    * When presented with a new wine, KNN calculates the distance (often Euclidean distance) 
+    between this wine's features and all the flowers in the training data.
     * The user defines the value of 'k' (number of nearest neighbors). KNN identifies the 'k' closest 
     data points (flowers) in the training set to the new flower.
-    * KNN predicts the class label (species) for the new flower based on the majority vote among its 
-    'k' nearest neighbors. For example, if three out of the five nearest neighbors belong to Iris Setosa, 
-    the new flower is classified as Iris Setosa.
+    * KNN predicts the class label (species) for the new wine based on the majority vote among its 
+    'k' nearest neighbors. For example, if three out of the five nearest neighbors belong to class_1, 
+    the new wine is classified as class_1.
     **Choosing 'k':**
     The value of 'k' significantly impacts KNN performance. A small 'k' value might lead to overfitting, where the 
     model performs well on the training data but poorly on unseen data. Conversely, a large 'k' value might not 
@@ -53,52 +62,58 @@ def app():
     \n**Advantages of KNN:**
     * Simple to understand and implement.
     * No complex model training required.
-    * Effective for datasets with well-defined clusters."""
+    * Effective for datasets with well-defined clusters.
     st.write(text)
     k = st.sidebar.slider(
         label="Select the value of k:",
         min_value= 2,
         max_value= 10,
         value=5,  # Initial value
-    )
+    )"
 
     if st.button("Begin"):
-        # Load the Iris dataset
-        iris = datasets.load_iris()
-        X = iris.data  # Features
-        y = iris.target  # Target labels (species)
-
+        wine = datasets.load_wine()
+        X = wine.data 
+        y = wine.target  
+        
         # KNN for supervised classification (reference for comparison)
-
+        
         # Define the KNN classifier with k=5 neighbors
         knn = KNeighborsClassifier(n_neighbors=k)
-
+        
         # Train the KNN model
         knn.fit(X, y)
-
+        
         # Predict the cluster labels for the data
         y_pred = knn.predict(X)
-        st.write('Confusion Matrix')
+        #st.write('Confusion Matrix')
         cm = confusion_matrix(y, y_pred)
-        st.text(cm)
-        st.subheader('Performance Metrics')
-        st.text(classification_report(y, y_pred))
-
+        #st.text(cm)
+        #st.subheader('Performance Metrics')
+        #st.text(classification_report(y, y_pred))
+        
         # Get unique class labels and color map
         unique_labels = list(set(y_pred))
         colors = plt.cm.get_cmap('viridis')(np.linspace(0, 1, len(unique_labels)))
-
+        
         fig, ax = plt.subplots(figsize=(8, 6))
-
+        
         for label, color in zip(unique_labels, colors):
             indices = y_pred == label
             # Use ax.scatter for consistent plotting on the created axis
-            ax.scatter(X[indices, 0], X[indices, 1], label=iris.target_names[label], c=color)
-
+            ax.scatter(X[indices, 0], X[indices, 1], label=wine.target_names[label], c=color)
+        
         # Add labels and title using ax methods
-        ax.set_xlabel('Sepal length (cm)')
-        ax.set_ylabel('Sepal width (cm)')
-        ax.set_title('Sepal Length vs Width Colored by Predicted Iris Species')
+        ax.set_xlabel('Alcohol')
+        ax.set_ylabel('Malic acid')
+        ax.set_title('Alcohol vs Malic Acid Colored by Predicted Wine Class')
+        
+        # Add legend and grid using ax methods
+        ax.legend()
+        ax.grid(True)
+
+# Display the plot
+
 
         # Add legend and grid using ax methods
         ax.legend()
