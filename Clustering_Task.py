@@ -6,20 +6,20 @@ def app():
     text = """Comparing Supervised and Unsupervised Learning: KNN vs KMeans"""
     st.subheader(text)
 
-    text = """Louie F. Cervantes, M. Eng. (Information Engineering) \n\n
+    text = """Ike J. Angot BSCS 3A \n\n
     CCS 229 - Intelligent Systems
     Computer Science Department
     College of Information and Communications Technology
     West Visayas State University"""
     st.text(text)
 
-    st.image('iris_flower.jpg', caption="The Iris Dataset""")
+    st.image('wine.jpg', caption="The UCI Wine Dataset""")
 
     text = """Data App: Supervised vs Unsupervised Learning Performance
     \nThis data app allows users to compare the performance of supervised learning (KNN) and unsupervised 
     learning (K-Means) gorithms for clustering tasks. 
     \nOnce configured, users can initiate the analysis. The app will run the KNN and K-Means algorithms on 
-    the iris dataset.
+    the Wine dataset.
     \n**Visualization and Comparison:**
     * The app will present the clustering results visually.
     * Scatter plots with data points colored by their assigned cluster for both KNN and K-Means.
