@@ -97,25 +97,23 @@ def app():
         y_pred = kmeans.predict(X)
 
         # Get unique class labels and color map
-        unique_labels = list(set(y_pred))
+        unique_labels = np.unique(y_kmeans)
         colors = plt.cm.get_cmap('viridis')(np.linspace(0, 1, len(unique_labels)))
-
+        
         fig, ax = plt.subplots(figsize=(8, 6))
-
+        
         for label, color in zip(unique_labels, colors):
-            indices = y_pred == label
-            # Use ax.scatter for consistent plotting on the created axis
-            ax.scatter(X[indices, 0], X[indices, 1], label=iris.target_names[label], c=color)
-
-        # Add labels and title using ax methods
+            indices = y_kmeans == label
+            if hasattr(wine, 'target_names'):
+                ax.scatter(X[indices, 0], X[indices, 1], c=color, label=wine.target_names[label])
+            else:
+                ax.scatter(X[indices, 0], X[indices, 1], c=color, label=f"Cluster {label}")
+        
         ax.set_xlabel(wine.feature_names[0])  
         ax.set_ylabel(wine.feature_names[1])  
         ax.set_title('Mallic Acid vs Alcohol')
-
-        # Add legend and grid using ax methods
         ax.legend()
         ax.grid(True)
-        st.pyplot(fig)
 
 
 #run the app
