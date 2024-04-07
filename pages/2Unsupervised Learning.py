@@ -85,10 +85,10 @@ def app():
         * Values closer to 1 indicate well-separated clusters.
         * Values around 0 suggest clusters are indifferently assigned (data points could belong to either cluster).
         * Negative values indicate poorly separated clusters (data points in a cluster are closer to points in other clusters).
-        In this case, a Silhouette Score of 0.5528 suggests:
+        In this case, a Silhouette Score of 0.5711381937868838 suggests:
         * **Moderately separated clusters:** The data points within a cluster are somewhat closer to their centroid than to centroids of other clusters. There's some separation, but it's not perfect
         * **Potential for improvement:** You might consider exploring different numbers of clusters (k) or using different initialization methods for K-means to see if a better clustering solution can be achieved with a higher Silhouette Score (closer to 1).
-        * The Iris dataset is relatively well-separated into three flower species. A Silhouette Score above 0.5 might be achievable with an appropriate number of clusters (k=3) and good initialization.
+        * The Wine dataset is relatively well-separated into three classes. A Silhouette Score above 0.5 might be achievable with an appropriate number of clusters (k=3) and good initialization.
         * The optimal k can vary depending on the specific dataset and the desired level of granularity in the clustering."""
         with st.expander("Click here for more information."):\
             st.write(text)
@@ -108,10 +108,11 @@ def app():
                 ax.scatter(X[indices, 0], X[indices, 1], c=color, label=wine.target_names[label])
             else:
                 ax.scatter(X[indices, 0], X[indices, 1], c=color, label=f"Cluster {label}")
-        
+        # Add labels and title using ax methods
         ax.set_xlabel(wine.feature_names[0])  
         ax.set_ylabel(wine.feature_names[1])  
         ax.set_title('Mallic Acid vs Alcohol')
+        # Add legend and grid using ax methods
         ax.legend()
         ax.grid(True)
         st.pyplot(fig)
