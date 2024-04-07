@@ -104,8 +104,8 @@ def app():
             ax.scatter(X[indices, 0], X[indices, 1], label=wine.target_names[label], c=color)
         
         # Add labels and title using ax methods
-        ax.set_xlabel('Alcohol')
-        ax.set_ylabel('Malic acid')
+        ax.set_xlabel(wine.feature_names[0])  
+        ax.set_ylabel(wine.feature_names[1])
         ax.set_title('Alcohol vs Malic Acid Colored by Predicted Wine Class')
         
         # Add legend and grid using ax methods
