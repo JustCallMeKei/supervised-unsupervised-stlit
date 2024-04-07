@@ -111,7 +111,7 @@ def app():
         # Add labels and title using ax methods
         ax.set_xlabel(wine.feature_names[0])  
         ax.set_ylabel(wine.feature_names[1])  
-        ax.set_title('Mallic Acid vs Alcohol')
+        ax.set_title('Malic Acid vs Alcohol')
         # Add legend and grid using ax methods
         ax.legend()
         ax.grid(True)
