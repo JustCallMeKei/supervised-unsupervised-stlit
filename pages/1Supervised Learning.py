@@ -69,7 +69,7 @@ def app():
         min_value= 2,
         max_value= 10,
         value=5,  # Initial value
-    )"
+    )
 
     if st.button("Begin"):
         wine = datasets.load_wine()
