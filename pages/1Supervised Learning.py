@@ -112,21 +112,10 @@ def app():
         ax.legend()
         ax.grid(True)
         
-
-
         # Add legend and grid using ax methods
         ax.legend()
         ax.grid(True)
         st.pyplot(fig)
-        #added confusion matrix plot since
-        plt.figure(figsize=(8, 6))
-        sns.heatmap(cm, annot=True, cmap='Blues', fmt='d', 
-                    xticklabels=wine.target_names, 
-                    yticklabels=wine.target_names)
-        plt.xlabel('Predicted')
-        plt.ylabel('Actual')
-        plt.title('Confusion Matrix')
-        st.pyplot(plt)
 #run the app
 if __name__ == "__main__":
     app()
